@@ -2,12 +2,15 @@
 <html data-ng-app="app">
 <head>
   <title>Pincode Map Visualizer</title>
+  <link rel="stylesheet" type="text/css" href="vendor.css" />
 </head>
-<body>
-  <div class="app" data-ui-view></div>
+<body style="min-height: 100%;">
+  <div style="min-height: 100%;" class="app" data-ui-view></div>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCARdc4LV9YBP2Tp2gI5HxS0Afj6FR-PH8"></script>
   <script type="text/javascript" src="vendor.js"></script>
   <script type="text/javascript" src="app.module.js"></script>
   <script type="text/javascript" src="app.routes.js"></script>
+  <script type="text/javascript" src="app.pincode.data.factory.js"></script>
   <script type="text/javascript" src="app.tracker.controller.js"></script>
 </body>
 </html>

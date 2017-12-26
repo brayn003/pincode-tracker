@@ -8,7 +8,12 @@ var path = {
     vendor: {
         js: [
             './node_modules/angular/angular.js',
-            './node_modules/@uirouter/angularjs/release/angular-ui-router.min.js'
+            './node_modules/@uirouter/angularjs/release/angular-ui-router.min.js',
+            './node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js',
+            './node_modules/ngmap/build/scripts/ng-map.min.js'
+        ],
+        css: [
+            './node_modules/bootstrap/dist/css/bootstrap.css'
         ]
     },
     src: {
@@ -25,6 +30,12 @@ gulp.task('vendor', function() {
     gulp.src(path.vendor.js)
         .pipe(concat('vendor.js'))
         .pipe(uglify())
+        .pipe(gulp.dest('./dist/'));
+});
+
+gulp.task('vendorcss', function() {
+    gulp.src(path.vendor.css)
+        .pipe(concat('vendor.css'))
         .pipe(gulp.dest('./dist/'));
 });
 
@@ -52,7 +63,7 @@ gulp.task('js', function() {
 
 
 gulp.task('data', function() {
-    gulp.src('./src/data/')
+    gulp.src('./src/data/*')
         .pipe(flatten())
         .pipe(gulp.dest('./dist/'));
     browserSync.reload();
@@ -69,5 +80,5 @@ gulp.task('watch', function() {
 });
 
 
-gulp.task('serve', ['vendor', 'html', 'js', 'data', 'watch']);
-gulp.task('build', ['vendor', 'html', 'js', 'data']);
+gulp.task('serve', ['vendor', 'vendorcss', 'html', 'js', 'data', 'watch']);
+gulp.task('build', ['vendor', 'vendorcss', 'html', 'js', 'data']);

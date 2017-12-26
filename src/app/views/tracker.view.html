@@ -1,0 +1,36 @@
+<div class="container-fluid">
+  <div class="col-sm-3">
+    <div class="form-inline">
+      <div class="form-group">
+        <label for="search">Search: </label>
+        <input type="text" class="form-control" id="search" placeholder="Search for 'pincode'" ng-model="vm.search.pincode">
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Pincode</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="pincodeData in vm.pincodes | filter:vm.search">
+            <td>{{$index}}</td>
+            <td>{{pincodeData.pincode}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col-sm-9">
+    <div map-lazy-load="https://maps.googleapis.com/maps/api/js?key=AIzaSyCARdc4LV9YBP2Tp2gI5HxS0Afj6FR-PH8">
+      <ng-map ng-style="{height: 0.6*vm.fullHeight + 'px', width: '100%'}"  center="41,-87" zoom="3">
+        <marker ng-repeat="pincodeData in vm.pincodes | filter:vm.search" position="[{{pincodeData.latitude}}, {{pincodeData.longitude}}]"></div>
+      </ng-map>
+    </div>
+    <div>
+      <h3>{{vm.activePincodeData.pincode}}</h3>
+    </div>
+  </div>
+</div>
